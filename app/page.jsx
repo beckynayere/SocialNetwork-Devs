@@ -1,17 +1,27 @@
 'use client'
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import {account, ID} from './appwrite'
 
 export default function Home() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [user, setUser] = useState(null);
+console.log({user})
+
+useEffect(() => {
+async function getUser(){
+setUser (await account.get())   
+    }
+   getUser();
+    }, [])
 
 async function handleLogin(){
         try {
             await account.createEmailSession(email, password);
+            setUser(await account.get())
             setEmail('')
-            password('')
+            setPassword('')
         } catch (e) {
             console.error(e)
         }
@@ -19,6 +29,7 @@ async function handleLogin(){
 async  function handleRegister(){
         try {
             await account.create(ID.unique(), email, password)
+            await handleLogin()
         }catch (e) {
             console.error(e)
         }
