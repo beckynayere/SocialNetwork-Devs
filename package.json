@@ -9,8 +9,13 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@auth0/nextjs-auth0": "^3.5.0",
+    "@types/cookie": "^0.6.0",
     "appwrite": "^15.0.0",
+    "cookie": "^0.6.0",
+    "iron-session": "^8.0.3",
     "next": "14.2.12",
+    "next-auth": "^4.24.7",
     "react": "^18",
     "react-dom": "^18"
   },
